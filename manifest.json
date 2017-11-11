@@ -1,0 +1,14 @@
+{
+  "name": "Trello Badger",
+  "description": "Play with badges on Trello cards",
+  "version": "0.1",
+  "manifest_version": 2,
+
+  "content_scripts": [
+    {
+      "matches": ["https://trello.com/*"],
+      "run_at": "document_start",
+      "js": ["content.js"]
+    }
+  ]
+}
