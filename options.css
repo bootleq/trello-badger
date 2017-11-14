@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin-top: 1em;
+  display: block;
+  -moz-user-select: element;
+}
+
+h1, ul {
+  padding: 0;
+  margin: 0;
+}
+
+input, button {
+  font: caption;
+}
+
+label,
+input[type="button"],
+button {
+  font-size: larger;
+}
+
+input[type="button"],
+input[type="checkbox"],
+button {
+  cursor: pointer;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+/* main-ctrls {{{ */
+#main-ctrls {
+  margin: 1em 0 2em 9px;
+}
+#main-ctrls button {
+  padding: 2px 14px;
+  margin-bottom: 1em;
+}
+#main-ctrls .info {
+  display: inline-block;
+  min-width: 5em;
+  margin: 0 1em;
+  text-align: center;
+}
+#main-ctrls .info strong {
+  display: none;
+}
+#main-ctrls .info.success {
+  color: #006504;
+}
+#main-ctrls .info.success .success {
+  display: block;
+}
+#main-ctrls .info.fail {
+  color: #ff0039;
+}
+#main-ctrls .info.fail .fail {
+  display: block;
+}
+/* }}} */

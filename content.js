@@ -9,12 +9,12 @@ let schema = [
   {
     name: 'estimatePt',
     label: '⏳',
-    type: 'number-total'
+    type: 'subtotal'
   },
   {
     name: 'consumedPt',
     label: '🏁',
-    type: 'number-total'
+    type: 'subtotal'
   }
 ];
 
@@ -101,7 +101,7 @@ function updateListTotal($list) {
   let $total = $list.querySelector(`.list-header .${listTotalClass}`);
 
   let collection = schema.reduce((ary, s) => {
-    if (s.type === 'number-total') {
+    if (s.type === 'subtotal') {
       ary.push({
         name: s.name,
         label: s.label,

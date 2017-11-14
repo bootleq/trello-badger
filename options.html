@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="chrome://browser/content/extension.css">
+    <link rel="stylesheet" type="text/css" href="options.css">
+  </head>
+
+  <body>
+    <h1>Boards</h1>
+
+    <ul id="boards">
+      <li>
+        <label>
+          <span>Board URL</span>
+          <input class='board-url' type="text"/>
+        </label>
+      </li>
+
+      <li>
+        <h2>Badges</h2>
+
+        <ul class="badges">
+          <template id='badge-template'>
+            <li>
+              <ul>
+                <li>
+                  <label>
+                    <span>Name</span>
+                    <input class='name' type="text"/>
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <span>Label</span>
+                    <input class='label' type="text"/>
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <span>Function</span>
+                    <select class='func'>
+                      <option value=''></option>
+                      <option value='subtotal'>Subtotal</option>
+                    </select>
+                  </label>
+                </li>
+              </ul>
+            </li>
+          </template>
+        </ul>
+
+        <button class='add-badge'>Add</button>
+      </li>
+
+    </ul>
+
+    <div id='main-ctrls'>
+      <button id='save'>Save</button>
+      <div class='info'>
+        <strong class='success'>Saved</strong>
+        <strong class='fail'>Failed</strong>
+      </div>
+    </div>
+
+    <script src="options.js"></script>
+  </body>
+</html>
