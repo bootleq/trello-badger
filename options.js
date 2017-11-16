@@ -1,6 +1,6 @@
 'use strict';
 
-let $board    = document.querySelector('input.board-url');
+let $board    = document.querySelector('input.board-name');
 let $badges   = document.querySelector('ul.badges');
 let $addBadge = document.querySelector('button.add-badge');
 let $save     = document.querySelector('#save');
@@ -34,7 +34,7 @@ function addBadge(cfg = {}) {
 }
 
 async function save() {
-  let board = document.querySelector('input.board-url').value;
+  let board = document.querySelector('input.board-name').value;
 
   let badges = Array.from($badges.querySelectorAll('.badges > li')).reduce((list, $i) => {
     list.push({

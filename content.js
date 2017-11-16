@@ -3,22 +3,9 @@
 const listTotalClass = 'trello-badger-addon-total';
 
 let $board;
+let schema = [];
 
-// TODO: customize
-let schema = [
-  {
-    name: 'estimatePt',
-    label: '⏳',
-    type: 'subtotal'
-  },
-  {
-    name: 'consumedPt',
-    label: '🏁',
-    type: 'subtotal'
-  }
-];
-
-let observer = new MutationObserver((mutations) => {
+let observer = new MutationObserver((mutations) => { // {{{
   let dirtyNodes = [];
 
   mutations.forEach(m => {
@@ -79,12 +66,36 @@ let observer = new MutationObserver((mutations) => {
     lists.forEach(i => updateListTotal(i));
   }
 });
+// }}}
+
+function updateConfig(items) {
+  let $boardName = document.querySelector('.board-header-btn-name .board-header-btn-text');
+  if ($boardName && $boardName.textContent === items.board) {
+    schema = items.badges;
+    start();
+  } else {
+    stop();
+  }
+}
 
 async function init() {
   window.addEventListener('unload', destroy, {once: true});
 
   $board = document.querySelector('#board');
 
+  browser.storage.local.get({board: '', badges: []}).then(items => {
+    updateConfig(items);
+  });
+
+  browser.storage.onChanged.addListener((changes) => {
+    let board  = 'board'  in changes ? changes.board  : '';
+    let badges = 'badges' in changes ? changes.badges : [];
+
+    return updateConfig({board: board, badges: badges});
+  });
+}
+
+function start() {
   observer.observe($board, {
     childList: true,
     characterData: true,
@@ -93,15 +104,19 @@ async function init() {
   });
 }
 
-function destroy() {
+function stop() {
   observer.disconnect();
+}
+
+function destroy() {
+  stop();
 }
 
 function updateListTotal($list) {
   let $total = $list.querySelector(`.list-header .${listTotalClass}`);
 
   let collection = schema.reduce((ary, s) => {
-    if (s.type === 'subtotal') {
+    if (s.func === 'subtotal') {
       ary.push({
         name: s.name,
         label: s.label,
